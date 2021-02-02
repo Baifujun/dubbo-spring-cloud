@@ -1,0 +1,23 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: producer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.2.107:8848
+        enabled: true
+        register-enabled: true
+  main:
+    allow-bean-definition-overriding: true
+#如果指定了spring应用名称，可以缺省dubbo的应用名称，这2个至少要配置1个。缺省dubbo的应用名称时默认值是spring的应用名称
+dubbo:
+  registry:
+    address: spring-cloud://192.168.2.107
+    timeout: 10000
+  protocol:
+    name: dubbo
+    port: 20880
+  scan:
+    base-packages: com.baixs.producer.service
