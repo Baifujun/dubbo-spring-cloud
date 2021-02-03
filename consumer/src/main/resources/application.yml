@@ -1,11 +1,20 @@
 server:
   port: 8080
-dubbo:
+spring:
   application:
     name: consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.2.107:8848
+  main:
+    allow-bean-definition-overriding: true
+dubbo:
   registry:
-    address: zookeeper://192.168.2.107:2181
+    address: spring-cloud://192.168.2.107
     timeout: 10000
   protocol:
     name: dubbo
-    port: 20880
+    port: -1
+  cloud:
+    subscribed-services: producer
